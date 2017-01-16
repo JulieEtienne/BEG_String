@@ -2,31 +2,14 @@
 
 
 
-//Destructor
+//DESTRUCTOR
 String::~String()
 {
 // Empty
 }
 
-//Returning the size_t capacity
-int String::capacity()
-{
-  return capacity_;
-}
 
-//Return True if array empty
-bool String::empty()
-{
 
-  if (size_ == 0)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-}
 
 //CONSTRUCTOR
 String::String()
@@ -48,7 +31,7 @@ String::String(const String &cp)
 
 String::String(char* c_string)
 {
-  size_ = sizeof(c_string) - 1; // Number of characters
+  size_ = sizeof(c_string) - 2; // Number of characters
 
   if(size_ < 255)
   {
@@ -81,3 +64,19 @@ size_t String::size()
   return size_;
 }
 
+size_t String::length()
+{
+  return size_;
+}
+
+//Returning the size_t capacity
+size_t String::capacity()
+{
+  return capacity_;
+}
+
+//Return True if array empty
+bool String::empty()
+{
+  return size_ == 0 ;
+}
