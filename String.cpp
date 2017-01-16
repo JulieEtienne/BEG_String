@@ -2,8 +2,8 @@
 
 String::String(char* c_string)
 {
-  size_ = str.length(c_string); // Number of characters
-  if(size < 255)
+  size_ = sizeof(c_string) - 1; // Number of characters
+  if(size_ < 255)
   {
       capacity_ = 255;
   } else {
