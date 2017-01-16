@@ -14,19 +14,21 @@ class String {
     void reserve(size_t addedSize, int n);
 
 
-  // CONSTRUCTORS
+    // CONSTRUCTORS
 
     String();
     String(const String &cp);
     String(char* c_string); // Constructor using a c-string
 
     // DESTRUCTOR
+
     ~String();
 
     // METHODS
 
     size_t capacity();
     size_t size();
+    size_t max_size();
     size_t length();
 
 
@@ -40,7 +42,7 @@ class String {
 
 
   private :
-    const size_t MAX_SIZE = 4294967291; // defines a constant,
+    const size_t MAX_SIZE = 4294967291; // defines maximum size a string can reach
 
     char* str; // character tab
 

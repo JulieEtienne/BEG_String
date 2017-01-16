@@ -12,7 +12,7 @@ String::~String()
 
 
 
-  
+
 
 
 //CONSTRUCTOR
@@ -40,8 +40,8 @@ String::String(char* c_string)
   if(size_ < 255)
   {
       capacity_ = 255;
-  } 
-  else 
+  }
+  else
   {
       capacity_ = size_;
   }
@@ -62,8 +62,13 @@ char* String::c_str()
   return str;
 }
 
-
 size_t String::size()
+{
+  // Returns the size of the string
+  return size_;
+}
+
+size_t String::max_size()
 {
   // Returns the maximum size a string can reach due to
   //the system or library implementations limitations
@@ -92,7 +97,7 @@ void String::reserve(size_t addedSize, int n)
 {
   //Init of new tab
   char* temp = new char(capacity_ + addedSize);
-  
+
   //Fill the new tab of the new string
   for (int i=0; i<size_;i++)
     {
@@ -101,5 +106,4 @@ void String::reserve(size_t addedSize, int n)
 
   delete str; //Delete old string
   str = temp; //Recreate the string
-} 
-
+}
