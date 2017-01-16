@@ -28,6 +28,25 @@ bool String::empty()
   }
 }
 
+//Allow more size for the string
+void String::reserve(size_t addedSize, int n)
+{
+  //Init of new tab
+  char* temp = new char(capacity_ + addedSize);
+  
+  //Fill the new tab of the new string
+  for (int i=0; i<size_;i++)
+    {
+      temp[i] = str[i];
+    }
+
+  delete str; //Delete old string
+  str = temp; //Recreate the string
+} 
+
+  
+
+
 //CONSTRUCTOR
 String::String()
 {
@@ -49,7 +68,7 @@ String::String(const String &cp)
 String::String(char* c_string)
 {
   size_ = str.length(c_string); // Number of characters
-  if(size < 255)
+  if(size_ < 255)
   {
       capacity_ = 255;
   } else {

@@ -11,11 +11,12 @@ class String {
 
     int capacity();
     bool empty();
+    void reserve(size_t addedSize, int n);
 
 
   //CONSTRUCTORS
-  String();
-  String(const String &cp);
+    String();
+    String(const String &cp);
     String(char* c_string); // Constructor using a c-string
 
 
