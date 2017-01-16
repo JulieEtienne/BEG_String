@@ -28,6 +28,25 @@ bool String::empty()
   }
 }
 
+//Allow more size for the string
+void String::reserve(size_t addedSize, int n)
+{
+  //Init of new tab
+  char* temp = new char(capacity_ + addedSize);
+  
+  //Fill the new tab of the new string
+  for (int i=0; i<size_;i++)
+    {
+      temp[i] = str[i];
+    }
+
+  delete str; //Delete old string
+  str = temp; //Recreate the string
+} 
+
+  
+
+
 //CONSTRUCTOR
 String::String()
 {
@@ -48,31 +67,39 @@ String::String(const String &cp)
 
 String::String(char* c_string)
 {
+
   size_ = sizeof(c_string) - 1; // Number of characters
+
   if(size_ < 255)
   {
       capacity_ = 255;
-  } else {
+  } 
+  else 
+  {
       capacity_ = size_;
   }
+
   str = new char(capacity_);
-  for(int i = 0; i<size_-1; ++i) // Don't copy the '\0' character
+
+  for(int i = 0; i<size_; ++i) // Don't copy the '\0' character
   {
     str[i] = c_string[i];
   }
 }
 
 
-size_t String::size()
+//METHODS
+
+char* String::c_str()
 {
-  // Returns the size of the array
-  return size_;
+  return str;
 }
 
 
-size_t String::max_size()
+size_t String::size()
 {
   // Returns the maximum size a string can reach due to
   //the system or library implementations limitations
   return MAX_SIZE;
 }
+

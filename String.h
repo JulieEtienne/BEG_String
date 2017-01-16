@@ -7,7 +7,15 @@
 class String {
 
   public :
-    // CONSTRUCTORS
+
+
+    int capacity();
+    bool empty();
+    void reserve(size_t addedSize, int n);
+
+
+  // CONSTRUCTORS
+
     String();
     String(const String &cp);
     String(char* c_string); // Constructor using a c-string
@@ -16,12 +24,16 @@ class String {
     ~String();
 
     // METHODS
+
     int capacity();
 
     bool empty();
 
     size_t size();
     size_t max_size();
+
+    char* c_str();
+
 
   protected :
 
