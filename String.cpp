@@ -5,24 +5,24 @@
 //Destructor
 String::~String()
 {
-// Empty 
+// Empty
 }
 
 //Returning the size_t capacity
 int String::capacity()
 {
-  return capacity_; 
+  return capacity_;
 }
 
 //Return True if array empty
 bool String::empty()
 {
-  
-  if (size_ == 0) 
+
+  if (size_ == 0)
   {
     return true;
   }
-  else 
+  else
   {
     return false;
   }
@@ -62,3 +62,8 @@ String::String(char* c_string)
   }
 }
 
+
+size_t String::size()
+{
+  return size_;
+}
