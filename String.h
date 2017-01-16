@@ -7,18 +7,24 @@
 class String {
 
   public :
-  
     ~String(); //Destructor
-    
+
     int capacity();
-    
     bool empty();
-    
+
+
+  //CONSTRUCTORS
+  String();
+  String(const String &cp);
+    String(char* c_string); // Constructor using a c-string
+
+
   protected :
-  
-  
+
+
   private :
     char* str; // character tab
+
     size_t capacity_; // size of tab
     size_t size_; // length of string 
 
