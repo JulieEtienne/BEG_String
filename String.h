@@ -24,9 +24,10 @@ class String {
     size_t size();
     size_t max_size();
     size_t length();
-
-
+    
     bool empty();
+    void reserve(size_t addedSize, int n);
+
 
     char* c_str();
 
