@@ -16,6 +16,21 @@ int main(int argc, char const *argv[])
   //C-string method test
   printf("\n Test c-string :\t %s", test3.c_str());
 
+  //empty method test
+  printf("\n Is empty test3:\t %s", test3.empty()? "True":"False");
+  printf("\n Is empty test2:\t %s", test2.empty()? "True":"False");
+
+  //capacity method test
+  printf("\n Capacity of test 3 :\t %d", test3.capacity());
+
+  //size method test
+  printf("\n Size of test 3 :\t %d", test3.size());
+
+  
+
+
+
+
 
   printf("\nEND\n");
 

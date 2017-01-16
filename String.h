@@ -25,12 +25,12 @@ class String {
 
     // METHODS
 
-    int capacity();
+    size_t capacity();
+    size_t size();
+    size_t length();
+
 
     bool empty();
-
-    size_t size();
-    size_t max_size();
 
     char* c_str();
 
@@ -45,7 +45,7 @@ class String {
     char* str; // character tab
 
     size_t capacity_; // size of tab
-    size_t size_; // length of string
+    size_t size_;     // length of string
 
 };
 
