@@ -8,10 +8,11 @@ class String {
 
   public :
 
+    char* c_str();
 
   //CONSTRUCTORS
-  String();
-  String(const String &cp);
+    String();
+    String(const String &cp);
     String(char* c_string); // Constructor using a c-string
 
 
