@@ -17,14 +17,19 @@ class String {
 
     // METHODS
     int capacity();
+
     bool empty();
+
     size_t size();
+    size_t max_size();
 
   protected :
 
 
 
   private :
+    const size_t MAX_SIZE = 4294967291; // defines a constant,
+
     char* str; // character tab
 
     size_t capacity_; // size of tab

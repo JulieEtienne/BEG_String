@@ -10,7 +10,6 @@ int main(int argc, char const *argv[])
   //Copy constructor test
   String test2(test);
 
-  
 
 
   printf("\nEND\n");

@@ -65,5 +65,14 @@ String::String(char* c_string)
 
 size_t String::size()
 {
+  // Returns the size of the array
   return size_;
+}
+
+
+size_t String::max_size()
+{
+  // Returns the maximum size a string can reach due to
+  //the system or library implementations limitations
+  return MAX_SIZE;
 }
