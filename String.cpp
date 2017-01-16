@@ -9,9 +9,6 @@ String::~String()
 }
 
 
-
-
-
   
 
 
@@ -55,6 +52,8 @@ String::String(char* c_string)
 }
 
 
+
+
 //METHODS
 
 char* String::c_str()
@@ -63,15 +62,20 @@ char* String::c_str()
 }
 
 
+
 size_t String::size()
 {
   return size_;
 }
 
+
+
 size_t String::length()
 {
   return size_;
 }
+
+
 
 //Returning the size_t capacity
 size_t String::capacity()
@@ -79,11 +83,16 @@ size_t String::capacity()
   return capacity_;
 }
 
+
+
 //Return True if array empty
 bool String::empty()
 {
   return size_ == 0 ;
 }
+
+
+
 
 //Allow more size for the string
 void String::reserve(size_t addedSize, int n)
