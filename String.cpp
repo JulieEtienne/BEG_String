@@ -5,24 +5,24 @@
 //Destructor
 String::~String()
 {
-// Empty 
+// Empty
 }
 
 //Returning the size_t capacity
 int String::capacity()
 {
-  return capacity_; 
+  return capacity_;
 }
 
 //Return True if array empty
 bool String::empty()
 {
-  
-  if (size_ == 0) 
+
+  if (size_ == 0)
   {
     return true;
   }
-  else 
+  else
   {
     return false;
   }
@@ -67,17 +67,37 @@ String::String(const String &cp)
 
 String::String(char* c_string)
 {
-  size_ = str.length(c_string); // Number of characters
+
+  size_ = sizeof(c_string) - 1; // Number of characters
+
   if(size_ < 255)
   {
       capacity_ = 255;
-  } else {
+  } 
+  else 
+  {
       capacity_ = size_;
   }
+
   str = new char(capacity_);
-  for(int i = 0; i<size_-1; ++i) // Don't copy the '\0' character
+
+  for(int i = 0; i<size_; ++i) // Don't copy the '\0' character
   {
     str[i] = c_string[i];
   }
+}
+
+
+//METHODS
+
+char* String::c_str()
+{
+  return str;
+}
+
+
+size_t String::size()
+{
+  return size_;
 }
 

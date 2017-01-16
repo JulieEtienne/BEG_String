@@ -10,7 +10,11 @@ int main(int argc, char const *argv[])
   //Copy constructor test
   String test2(test);
 
-  
+  //C-string constructor test
+  String test3("coucou");
+
+  //C-string method test
+  printf("\n Test c-string :\t %s", test3.c_str());
 
 
   printf("\nEND\n");
