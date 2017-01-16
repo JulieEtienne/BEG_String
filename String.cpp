@@ -11,6 +11,10 @@ String::~String()
 
 
 
+
+  
+
+
 //CONSTRUCTOR
 String::String()
 {
@@ -80,3 +84,20 @@ bool String::empty()
 {
   return size_ == 0 ;
 }
+
+//Allow more size for the string
+void String::reserve(size_t addedSize, int n)
+{
+  //Init of new tab
+  char* temp = new char(capacity_ + addedSize);
+  
+  //Fill the new tab of the new string
+  for (int i=0; i<size_;i++)
+    {
+      temp[i] = str[i];
+    }
+
+  delete str; //Delete old string
+  str = temp; //Recreate the string
+} 
+
