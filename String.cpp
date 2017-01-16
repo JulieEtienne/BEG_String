@@ -1,6 +1,33 @@
 #include "String.h"
 
 
+
+//Destructor
+String::~String()
+{
+// Empty
+}
+
+//Returning the size_t capacity
+int String::capacity()
+{
+  return capacity_;
+}
+
+//Return True if array empty
+bool String::empty()
+{
+
+  if (size_ == 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 //CONSTRUCTOR
 String::String()
 {
@@ -21,7 +48,7 @@ String::String(const String &cp)
 
 String::String(char* c_string)
 {
-  size_ = sizeof(c_string)-1; // Number of characters
+  size_ = sizeof(c_string) - 1; // Number of characters
 
   if(size_ < 255)
   {
@@ -41,7 +68,6 @@ String::String(char* c_string)
 }
 
 
-
 //METHODS
 
 char* String::c_str()
@@ -50,4 +76,8 @@ char* String::c_str()
 }
 
 
+size_t String::size()
+{
+  return size_;
+}
 
