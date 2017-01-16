@@ -8,12 +8,6 @@ class String {
 
   public :
 
-
-    int capacity();
-    bool empty();
-    void reserve(size_t addedSize, int n);
-
-
     // CONSTRUCTORS
 
     String();
@@ -35,6 +29,9 @@ class String {
     bool empty();
 
     char* c_str();
+
+    void resize(size_t n);
+    void reserve(size_t addedSize, int n);
 
 
   protected :
