@@ -11,6 +11,7 @@ class String {
 
   //CONSTRUCTORS
   String();
+  String(const String &cp);
   protected :
   
   
