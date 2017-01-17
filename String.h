@@ -12,35 +12,30 @@ class String {
 
     String();
     String(const String &cp);
-    String(char* c_string); // Constructor using a c-string
+    String(const char* c_string); // Constructor using a c-string
 
     // DESTRUCTOR
 
     ~String();
 
-    // METHODS
+    // MEMBER FUCTIONS
 
     size_t capacity();
     size_t size();
     size_t max_size();
     size_t length();
-    
-    bool empty();
-    void reserve(size_t addedSize, int n);
 
+    bool empty();
 
     char* c_str();
 
-    void resize(size_t n);
-    void reserve(size_t addedSize, int n);
-
-
-  protected :
-
-
+    void resize(size_t n, char c = '\0');
+    void reserve(size_t addedSize);
 
   private :
-    const size_t MAX_SIZE = 4294967291; // defines maximum size a string can reach
+
+    // defines maximum size a string can reach
+    const size_t MAX_SIZE = 4294967291;
 
     char* str; // character tab
 
