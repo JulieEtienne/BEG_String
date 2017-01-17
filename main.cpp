@@ -1,6 +1,6 @@
 #include "String.h"
 
-int main(int argc, char const *argv[])
+int main()
 {
   printf("\nTP de Cpp\n");
 
@@ -21,12 +21,14 @@ int main(int argc, char const *argv[])
   printf("\n Is empty test2:\t %s", test2.empty()? "True":"False");
 
   //capacity method test
-  printf("\n Capacity of test 3 :\t %d", test3.capacity());
+  printf("\n Capacity of test 3 :\t %d", (int)test3.capacity());
 
   //size method test
-  printf("\n Size of test 3 :\t %d", test3.size());
+  printf("\n Size of test 3 :\t %d", (int)test3.size());
 
-  
+  //resize test
+  test3.resize(12, 'b');
+  printf("\n Resized Coucou :\t %s", test3.c_str());
 
 
 
