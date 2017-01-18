@@ -6,6 +6,8 @@
 String::~String()
 {
   delete str;
+  printf("\nTERMINATED\n");
+
 }
 
 
@@ -17,38 +19,52 @@ String::String()
 {
   str = new char(255);
 
+  str[0]='\0';
   size_ = 0;
   capacity_ = 255;
 }
 
 String::String(const String &cp)
 {
-  str = new char(*(cp.str));
+  str = new char(cp.capacity_);
+  for (int i = 0; i < cp.size_; ++i) 
+  {
+    str[i] = cp.str[i];
+  }
 
   size_ = cp.size_;
   capacity_ = cp.capacity_;
+
+  str[size_]='\0';
 }
 
 
 String::String(char* c_string)
 {
-  size_ = sizeof(c_string) - 2; // Number of characters (without the '\0')
+  int s = 0;
+  while(c_string[s] != '\0')
+  {
+    ++s;
+  }
+
+  size_ = s;//sizeof(c_string); // Number of characters (without the '\0')
 
   if(size_ < 255)
   {
-      capacity_ = 255;
+    capacity_ = 255;
   }
   else
   {
-      capacity_ = size_;
+    capacity_ = size_ +1;
   }
 
   str = new char(capacity_);
 
-  for(int i = 0; i<size_; ++i) // Don't copy the '\0' character
+  for(int i = 0; i < size_; ++i) // Don't copy the '\0' character
   {
     str[i] = c_string[i];
   }
+
 }
 
 
@@ -105,19 +121,42 @@ bool String::empty()
 void String::reserve(int addedSize)
 {
   //Init of new tab
-  char* temp = new char(capacity_ + addedSize);
+  char* temp = str;
+  int a = capacity_ + addedSize;
+  str = new char(a);
 
   //Fill the new tab of the new string
-  for (int i=0; i<size_;i++)
+  for (int i=0; i <= size_;i++)
     {
-      temp[i] = str[i];
+      str[i] = temp[i];
+      printf("%c\n", temp[i] );
     }
-
-  //Recreate the string
-  delete str; 
-  str = temp; 
+  delete temp; 
 
   //Update capacity
   capacity_ += addedSize; 
 }
 
+String String::operator+(const String& left_s)
+{
+  String tmp_str(*this);
+
+  //Update capacity if necessary
+  if(tmp_str.size_ + left_s.size_ >= tmp_str.capacity_)
+  {
+    tmp_str.reserve((tmp_str.size_+left_s.size_)-tmp_str.capacity_);
+  }
+    
+  //concatenate strings
+  for (int i = tmp_str.size_; i < (left_s.size_+tmp_str.size_); ++i)
+  {
+    tmp_str.str[i] = left_s.str[i-tmp_str.size_];
+  }
+  
+  //Update size
+  tmp_str.size_  += left_s.size_;
+
+  tmp_str.str[tmp_str.size_] = '\0';
+
+  return tmp_str;
+}

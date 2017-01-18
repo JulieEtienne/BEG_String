@@ -31,6 +31,8 @@ class String {
     void reserve(int addedSize);
 
 
+    //OPERATORS
+    String operator+(const String& left_s);
 
 
   protected :
