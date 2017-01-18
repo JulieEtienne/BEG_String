@@ -6,13 +6,13 @@ SRCS = main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXXFLAGS = -Wall -Wextra -Werror -g3
+CXXFLAGS = -Wall -Wextra -Werror -g3 -std=gnu++0x
 
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(EXTRA) $(CXX) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
