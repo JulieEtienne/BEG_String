@@ -26,11 +26,10 @@ class String {
     size_t length();
     
     bool empty();
-    void reserve(size_t addedSize, int n);
-
 
     char* c_str();
-    void reserve(size_t addedSize, int n);
+    void reserve(int addedSize);
+
 
 
 
@@ -41,7 +40,7 @@ class String {
   private :
     const size_t MAX_SIZE = 4294967291; // defines maximum size a string can reach
 
-    char* str; // character tab
+    char* str;        // character tab
 
     size_t capacity_; // size of tab
     size_t size_;     // length of string

@@ -5,7 +5,7 @@
 //DESTRUCTOR
 String::~String()
 {
-// Empty
+  delete str;
 }
 
 
@@ -32,7 +32,7 @@ String::String(const String &cp)
 
 String::String(char* c_string)
 {
-  size_ = sizeof(c_string) - 2; // Number of characters
+  size_ = sizeof(c_string) - 2; // Number of characters (without the '\0')
 
   if(size_ < 255)
   {
@@ -58,6 +58,7 @@ String::String(char* c_string)
 
 char* String::c_str()
 {
+  //Returns the c-string.
   return str;
 }
 
@@ -101,7 +102,7 @@ bool String::empty()
 
 
 //Allow more size for the string
-void String::reserve(size_t addedSize, int n)
+void String::reserve(int addedSize)
 {
   //Init of new tab
   char* temp = new char(capacity_ + addedSize);
@@ -112,6 +113,11 @@ void String::reserve(size_t addedSize, int n)
       temp[i] = str[i];
     }
 
-  delete str; //Delete old string
-  str = temp; //Recreate the string
+  //Recreate the string
+  delete str; 
+  str = temp; 
+
+  //Update capacity
+  capacity_ += addedSize; 
 }
+
