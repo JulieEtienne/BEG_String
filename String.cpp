@@ -27,7 +27,7 @@ String::String()
 String::String(const String &cp)
 {
   str = new char(cp.capacity_);
-  for (int i = 0; i < cp.size_; ++i) 
+  for (unsigned int i = 0; i < cp.size_; ++i) 
   {
     str[i] = cp.str[i];
   }
@@ -60,7 +60,7 @@ String::String(const char* c_string)
 
   str = new char(capacity_);
 
-  for(int i = 0; i < size_; ++i) // Don't copy the '\0' character
+  for(unsigned int i = 0; i < size_; ++i) // Don't copy the '\0' character
   {
     str[i] = c_string[i];
   }
@@ -129,7 +129,7 @@ void String::reserve(int addedSize)
   str = new char(a);
 
   //Fill the new tab of the new string
-  for (int i=0; i <= size_;i++)
+  for (unsigned int i=0; i <= size_;i++)
     {
       str[i] = temp[i];
       printf("%c\n", temp[i] );
@@ -147,11 +147,11 @@ String String::operator+(const String& left_s)
   //Update capacity if necessary
   if(tmp_str.size_ + left_s.size_ >= tmp_str.capacity_)
   {
-    tmp_str.reserve((tmp_str.size_+left_s.size_)-tmp_str.capacity_);
+    tmp_str.reserve(int((tmp_str.size_+left_s.size_)-tmp_str.capacity_));
   }
     
   //concatenate strings
-  for (int i = tmp_str.size_; i < (left_s.size_+tmp_str.size_); ++i)
+  for (unsigned int i = tmp_str.size_; i < (left_s.size_+tmp_str.size_); ++i)
   {
     tmp_str.str[i] = left_s.str[i-tmp_str.size_];
   }

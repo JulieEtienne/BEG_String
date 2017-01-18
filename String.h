@@ -28,14 +28,12 @@ class String {
     bool empty();
 
     char* c_str();
-    void reserve(int addedSize);
 
+    void resize(size_t n, char c = '\0');
+    void reserve(int addedSize);
 
     //OPERATORS
     String operator+(const String& left_s);
-
-    void resize(size_t n, char c = '\0');
-    void reserve(size_t addedSize);
 
   private :
 
