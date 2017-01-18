@@ -12,13 +12,13 @@ class String {
 
     String();
     String(const String &cp);
-    String(char* c_string); // Constructor using a c-string
+    String(const char* c_string); // Constructor using a c-string
 
     // DESTRUCTOR
 
     ~String();
 
-    // METHODS
+    // MEMBER FUCTIONS
 
     size_t capacity();
     size_t size();
@@ -34,13 +34,13 @@ class String {
     //OPERATORS
     String operator+(const String& left_s);
 
-
-  protected :
-
-
+    void resize(size_t n, char c = '\0');
+    void reserve(size_t addedSize);
 
   private :
-    const size_t MAX_SIZE = 4294967291; // defines maximum size a string can reach
+
+    // defines maximum size a string can reach
+    const size_t MAX_SIZE = 4294967291;
 
     char* str;        // character tab
 

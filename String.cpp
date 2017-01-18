@@ -39,7 +39,7 @@ String::String(const String &cp)
 }
 
 
-String::String(char* c_string)
+String::String(const char* c_string)
 {
   int s = 0;
   while(c_string[s] != '\0')
@@ -79,12 +79,12 @@ char* String::c_str()
 }
 
 
-
 size_t String::size()
 {
   // Returns the size of the string
   return size_;
 }
+
 
 size_t String::max_size()
 {
@@ -93,9 +93,10 @@ size_t String::max_size()
   return MAX_SIZE;
 }
 
+
 size_t String::length()
 {
-  return size_;
+    return size_;
 }
 
 
@@ -103,6 +104,7 @@ size_t String::length()
 //Returning the size_t capacity
 size_t String::capacity()
 {
+  //Returning the capacity
   return capacity_;
 }
 
@@ -111,6 +113,7 @@ size_t String::capacity()
 //Return True if array empty
 bool String::empty()
 {
+  //Return True if array is empty
   return size_ == 0 ;
 }
 
@@ -159,4 +162,26 @@ String String::operator+(const String& left_s)
   tmp_str.str[tmp_str.size_] = '\0';
 
   return tmp_str;
+}
+
+void String::resize(size_t n, char c)
+{
+    // resize an initial string to a new size n
+    char* tmp = NULL;
+
+    //Allocate memory to tmp var
+    //If malloc returns, means it didn't work
+    if (!(tmp = (char *)malloc(sizeof(char) * n)))
+        return ;
+    for (unsigned int i = 0; i < n; i++) {
+        //if this->str exists => n > this->size_
+        if (this->str[i]) {
+            tmp[i] = this->str[i];
+        } else {
+            tmp[i] = c;
+        }
+    }
+    //Same ptrs
+    delete this->str;
+    this->str = tmp;
 }
