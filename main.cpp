@@ -26,7 +26,9 @@ int main(int argc, char const *argv[])
   //size method test
   printf("\n Size of test 3 :\t %d", test3.size());
 
-  
+  //reserve method test
+  test3.reserve(100);
+  printf("\n Capacity of test 3 after reserve :\t %d", test3.capacity());
 
 
 
