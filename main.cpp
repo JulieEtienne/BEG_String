@@ -16,8 +16,8 @@ int main()
   //String of 251 char
   String test4("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Bigger >:)");
   
-  printf("\n Capacity of test 4 :\t %d", test4.capacity());
-  printf("\n Size of test 4 :\t %d", test4.size());
+  printf("\n Capacity of test 4 :\t %d", int(test4.capacity()));
+  printf("\n Size of test 4 :\t %d", int(test4.size()));
   printf("\n Content of test 4 :\t %s", test4.c_str());
 
 
@@ -37,7 +37,7 @@ int main()
 
   //reserve method test
   test3.reserve(100);
-  printf("\n Capacity of test 3 after reserve :\t %d", test3.capacity());
+  printf("\n Capacity of test 3 after reserve :\t %d", int(test3.capacity()));
 
   //+operator test 
 
