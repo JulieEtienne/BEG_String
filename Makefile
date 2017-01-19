@@ -6,8 +6,8 @@ SRCS = main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXXFLAGS = -Wall -Wextra -Werror -g3 -std=gnu++0x
-
+CXXFLAGS = -Wall -Wextra -Werror -g3 -O0 -std=gnu++0x
+ 
 
 all: $(NAME)
 
