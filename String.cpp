@@ -5,7 +5,7 @@
 //DESTRUCTOR
 String::~String()
 {
-  delete str;
+  delete [] str;
   printf("\nTERMINATED\n");
 
 }
@@ -17,7 +17,7 @@ String::~String()
 //CONSTRUCTOR
 String::String()
 {
-  str = new char(255);
+  str = new char[255];
 
   str[0]='\0';
   size_ = 0;
@@ -26,7 +26,7 @@ String::String()
 
 String::String(const String &cp)
 {
-  str = new char(cp.capacity_);
+  str = new char[cp.capacity_];
   for (unsigned int i = 0; i < cp.size_; ++i) 
   {
     str[i] = cp.str[i];
@@ -47,7 +47,7 @@ String::String(const char* c_string)
     ++s;
   }
 
-  size_ = s;//sizeof(c_string); // Number of characters (without the '\0')
+  size_ = s; // Number of characters (without the '\0')
 
   if(size_ < 255)
   {
@@ -58,7 +58,7 @@ String::String(const char* c_string)
     capacity_ = size_ +1;
   }
 
-  str = new char(capacity_);
+  str = new char[capacity_];
 
   for(unsigned int i = 0; i < size_; ++i) // Don't copy the '\0' character
   {
@@ -126,7 +126,7 @@ void String::reserve(int addedSize)
   //Init of new tab
   char* temp = str;
   int a = capacity_ + addedSize;
-  str = new char(a);
+  str = new char[a];
 
   //Fill the new tab of the new string
   for (unsigned int i=0; i <= size_;i++)
@@ -175,13 +175,13 @@ void String::resize(size_t n, char c)
         return ;
     for (unsigned int i = 0; i < n; i++) {
         //if this->str exists => n > this->size_
-        if (this->str[i]) {
-            tmp[i] = this->str[i];
+        if (str[i]) {
+            tmp[i] = str[i];
         } else {
             tmp[i] = c;
         }
     }
     //Same ptrs
-    delete this->str;
-    this->str = tmp;
+    delete [] str;
+    str = tmp;
 }
