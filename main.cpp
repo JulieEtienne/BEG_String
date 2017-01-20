@@ -41,8 +41,13 @@ int main()
 
   //+operator test 
 
+  String test0(test3 + test4);
 
+  printf("\n Capacity of test 0 :\t %d", int(test0.capacity()));
+  printf("\n Size of test 0 :\t %d", int(test0.size()));
+  printf("\n Content of test 0 :\t %s", test0.c_str());
 
+  
   //delete test, test2, test3, test4;
 
   printf("\nEND\n");
