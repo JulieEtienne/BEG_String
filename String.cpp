@@ -5,8 +5,9 @@
 //DESTRUCTOR
 String::~String()
 {
+  printf("\nTERMINATED\n%s\n", str);
+
   delete [] str;
-  printf("\nTERMINATED\n");
 
 }
 
@@ -123,22 +124,49 @@ bool String::empty()
 //Allow more size for the string
 void String::reserve(int addedSize)
 {
-  //Init of new tab
-  char* temp = str;
   int a = capacity_ + addedSize;
-  str = new char[a];
+
+  //Init of new tab
+  char* temp;
+  
+  temp = new char[a];
 
   //Fill the new tab of the new string
   for (unsigned int i=0; i <= size_;i++)
     {
-      str[i] = temp[i];
-      printf("%c\n", temp[i] );
+      temp[i] = str[i];
     }
-  delete temp; 
+  delete [] str; 
+  str = temp;
 
   //Update capacity
   capacity_ += addedSize; 
 }
+
+void String::resize(size_t n, char c)
+{
+    // resize an initial string to a new size n
+    char* tmp = NULL;
+
+    //Allocate memory to tmp var
+    //If malloc returns, means it didn't work
+    if (!(tmp = (char *)malloc(sizeof(char) * n)))
+        return ;
+    for (unsigned int i = 0; i < n; i++) {
+        //if this->str exists => n > this->size_
+        if (str[i]) {
+            tmp[i] = str[i];
+        } else {
+            tmp[i] = c;
+        }
+    }
+    //Same ptrs
+    delete [] str;
+    str = tmp;
+}
+
+
+//OPERATORS
 
 String String::operator+(const String& left_s)
 {
@@ -164,24 +192,19 @@ String String::operator+(const String& left_s)
   return tmp_str;
 }
 
-void String::resize(size_t n, char c)
+String& String::operator=(const String& left_s)
 {
-    // resize an initial string to a new size n
-    char* tmp = NULL;
+  capacity_ = left_s.capacity_;
+  size_ = left_s.capacity_;
 
-    //Allocate memory to tmp var
-    //If malloc returns, means it didn't work
-    if (!(tmp = (char *)malloc(sizeof(char) * n)))
-        return ;
-    for (unsigned int i = 0; i < n; i++) {
-        //if this->str exists => n > this->size_
-        if (str[i]) {
-            tmp[i] = str[i];
-        } else {
-            tmp[i] = c;
-        }
-    }
-    //Same ptrs
-    delete [] str;
-    str = tmp;
+  delete [] str;  
+
+  str = new char[capacity_];
+  
+  for(unsigned int i = 0; i < size_; ++i)
+  {
+    str[i] = c_string[i];
+  }
+
+  return *this;
 }
