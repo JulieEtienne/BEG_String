@@ -1,5 +1,9 @@
 #include "String.h"
 
+
+
+
+
 int main()
 {
   printf("\nTP de Cpp\n");
@@ -16,42 +20,42 @@ int main()
   //String of 251 char
   String test4("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Bigger >:)");
   
-  printf("\n Capacity of test 4 :\t %d", int(test4.capacity()));
-  printf("\n Size of test 4 :\t %d", int(test4.size()));
-  printf("\n Content of test 4 :\t %s", test4.c_str());
-
+  // printf("\n Capacity of test 4 :\t %d", int(test4.capacity()));
+  // printf("\n Size of test 4 :\t %d", int(test4.size()));
+  // printf("\n Content of test 4 :\t %s", test4.c_str());
+  test4.print_str_properties(4);
 
   
   //C-string method test
-  printf("\n Test c-string :\t %s", test3.c_str());
+  printf("\n Test c-string :\t %s\n", test3.c_str());
 
   //empty method test
-  printf("\n Is empty test3:\t %s", test3.empty()? "True":"False");
-  printf("\n Is empty test2:\t %s", test2.empty()? "True":"False");
+  printf("\n Is empty test3:\t %s\n", test3.empty()? "True":"False");
+  printf("\n Is empty test2:\t %s\n", test2.empty()? "True":"False");
 
   //capacity method test
-  printf("\n Capacity of test 3 :\t %d", (int)test3.capacity());
+  printf("\n Capacity of test 3 :\t %d\n", (int)test3.capacity());
 
   //size method test
-  printf("\n Size of test 3 :\t %d", (int)test3.size());
+  printf("\n Size of test 3 :\t %d\n", (int)test3.size());
 
   //reserve method test
   test3.reserve(100);
-  printf("\n Capacity of test 3 after reserve :\t %d", int(test3.capacity()));
+  printf("\n Capacity of test 3 after reserve :\t %d\n", int(test3.capacity()));
 
   //+operator test 
 
   String test0(test3 + test4);
 
-  printf("\n Capacity of test 0 :\t %d", int(test0.capacity()));
-  printf("\n Size of test 0 :\t %d", int(test0.size()));
-  printf("\n Content of test 0 :\t %s", test0.c_str());
+  test4.print_str_properties(0);
 
+  //=operator test 
   
-  //delete test, test2, test3, test4;
+  test = test3 + test0;
+
+  test4.print_str_properties(1);
 
   printf("\nEND\n");
 
-  return 0;
   return 0;
 }
