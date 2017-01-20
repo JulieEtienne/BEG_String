@@ -5,10 +5,7 @@
 //DESTRUCTOR
 String::~String()
 {
-  printf("\nTERMINATED\n%s\n", str);
-
   delete [] str;
-
 }
 
 
@@ -166,6 +163,18 @@ void String::resize(size_t n, char c)
 }
 
 
+void String::print_str_properties(int id)
+{
+  printf("\nString number %d properties\n", id);
+  printf("\n Is empty:\t %s", this->empty()? "True":"False");
+
+  printf("\n Capacity:\t %d", int(this->capacity()));
+  printf("\n Size:\t\t %d", int(this->size()));
+  printf("\n Content:\t %s\n-----------------\n", this->c_str());
+}
+
+
+
 //OPERATORS
 
 String String::operator+(const String& left_s)
@@ -200,11 +209,12 @@ String& String::operator=(const String& left_s)
   delete [] str;  
 
   str = new char[capacity_];
-  
+
   for(unsigned int i = 0; i < size_; ++i)
   {
-    str[i] = c_string[i];
+    str[i] = left_s.str[i];
   }
 
   return *this;
 }
+

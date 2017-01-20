@@ -19,6 +19,8 @@ class String {
     ~String();
 
     // MEMBER FUCTIONS
+    void print_str_properties(int id);
+
 
     size_t capacity();
     size_t size();
