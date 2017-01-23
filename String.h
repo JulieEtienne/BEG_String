@@ -7,6 +7,8 @@
 class String {
 
   friend String operator+(const String& lhs, const String& rhs);
+  friend String operator+(const String& lhs, char rhs);
+  friend String operator+(const String& lhs, const char* rhs);
 
   public :
 
@@ -38,8 +40,6 @@ class String {
     void reserve(int addedSize);
 
     //OPERATORS
-    String operator+(char right_s);
-    String operator+(const char* c_string);
 
     String& operator=(const String& right_s);
     String& operator=(const char* c_string);
@@ -60,6 +60,8 @@ class String {
 };
 
     String operator+(const String& lhs, const String& rhs);
+    String operator+(const String& lhs, char rhs);
+    String operator+(const String& lhs, const char* rhs);
 
 
 
