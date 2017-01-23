@@ -217,7 +217,7 @@ String String::operator+(const String& right_s)
   return tmp_str;
 }
 
-String String::operator+(const char right_s)
+String String::operator+(char right_s)
 {
   String tmp_str(*this);
   
