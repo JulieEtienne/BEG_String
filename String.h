@@ -36,11 +36,9 @@ class String {
     void reserve(int addedSize);
 
     //OPERATORS
-    String operator+(const String& left_s);
-    String operator+(const char* left_str);
+    String operator+(const String& right_s);
 
-
-    String& operator=(const String& left_s);
+    String& operator=(const String& right_s);
     String& operator=(const char* c_string);
     String& operator=(char c);
 

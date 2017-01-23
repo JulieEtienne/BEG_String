@@ -192,25 +192,25 @@ void String::print_str_properties(int id)
 //OPERATORS
 
 //Operator+ by copy
-String String::operator+(const String& left_s)
+String String::operator+(const String& right_s)
 {
   String tmp_str(*this);
 
   //Update capacity if necessary
-  if(tmp_str.size_ + left_s.size_ >= tmp_str.capacity_)
+  if(tmp_str.size_ + right_s.size_ >= tmp_str.capacity_)
   {
-    tmp_str.reserve(int((tmp_str.size_+left_s.size_)-tmp_str.capacity_));
+    tmp_str.reserve(int((tmp_str.size_+right_s.size_)-tmp_str.capacity_));
   }
     
   //concatenate strings
-  for (unsigned int i = tmp_str.size_; i < (left_s.size_+tmp_str.size_); ++i)
+  for (unsigned int i = tmp_str.size_; i < (right_s.size_+tmp_str.size_); ++i)
   {
-    tmp_str.str[i] = left_s.str[i-tmp_str.size_];
+    tmp_str.str[i] = right_s.str[i-tmp_str.size_];
   }
   
   //Update size
-  printf("\nMOUAHA : %d\n", int(left_s.size_));
-  tmp_str.size_  += left_s.size_;
+  printf("\nMOUAHA : %d\n", int(right_s.size_));
+  tmp_str.size_  += right_s.size_;
 
   tmp_str.str[tmp_str.size_] = '\0';
 
@@ -218,10 +218,10 @@ String String::operator+(const String& left_s)
 }
 
 //Operator= by copy
-String& String::operator=(const String& left_s)
+String& String::operator=(const String& right_s)
 {
-  capacity_ = left_s.capacity_;
-  size_ = left_s.capacity_;
+  capacity_ = right_s.capacity_;
+  size_ = right_s.capacity_;
 
   delete [] str;  
 
@@ -229,7 +229,7 @@ String& String::operator=(const String& left_s)
 
   for(unsigned int i = 0; i < size_; ++i)
   {
-    str[i] = left_s.str[i];
+    str[i] = right_s.str[i];
   }
 
   return *this;
