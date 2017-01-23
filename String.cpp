@@ -143,23 +143,37 @@ void String::reserve(int addedSize)
 void String::resize(size_t n, char c)
 {
     // resize an initial string to a new size n
-    char* tmp = NULL;
+    char* tmp = new char[n];
 
-    //Allocate memory to tmp var
-    //If malloc returns, means it didn't work
-    if (!(tmp = (char *)malloc(sizeof(char) * n)))
-        return ;
+    if (n >= capacity_)
+    {
+      this->reserve(int(n-capacity_)+1);
+    }
+
     for (unsigned int i = 0; i < n; i++) {
-        //if this->str exists => n > this->size_
-        if (str[i]) {
-            tmp[i] = str[i];
-        } else {
-            tmp[i] = c;
+        if (i < size_) 
+        {
+          tmp[i] = str[i];
+        } 
+        else 
+        {
+          tmp[i] = c;
         }
     }
-    //Same ptrs
+    size_ = n;
+    tmp[size_] = '\0';
+
     delete [] str;
     str = tmp;
+}
+
+void String::clear()
+{
+  delete [] str;
+  str = new char[255];
+  size_ = 0;
+  capacity_ = 255;
+  str[0] = '\0';
 }
 
 
@@ -177,6 +191,7 @@ void String::print_str_properties(int id)
 
 //OPERATORS
 
+//Operator+ by copy
 String String::operator+(const String& left_s)
 {
   String tmp_str(*this);
@@ -194,13 +209,13 @@ String String::operator+(const String& left_s)
   }
   
   //Update size
+  printf("\nMOUAHA : %d\n", int(left_s.size_));
   tmp_str.size_  += left_s.size_;
 
   tmp_str.str[tmp_str.size_] = '\0';
 
   return tmp_str;
 }
-
 
 //Operator= by copy
 String& String::operator=(const String& left_s)
