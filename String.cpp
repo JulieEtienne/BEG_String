@@ -217,6 +217,27 @@ String String::operator+(const String& right_s)
   return tmp_str;
 }
 
+String String::operator+(const char right_s)
+{
+  String tmp_str(*this);
+  
+  //define the new size
+  int newSize = int(tmp_str.size_)+1;
+  
+  //Add the new capacity
+  tmp_str.reserve(newSize);
+   
+  //Concatenate string and char
+  tmp_str.str[newSize -1] = right_s;
+  
+  //Update size
+  tmp_str.size_ += 1;
+  tmp_str.str[tmp_str.size_] = '\0';
+  
+  return tmp_str;
+}
+
+
 //Operator= by copy
 String& String::operator=(const String& right_s)
 {
@@ -234,6 +255,7 @@ String& String::operator=(const String& right_s)
 
   return *this;
 }
+
 
 //Operator= by c_str
 String& String::operator=(const char* c_string)

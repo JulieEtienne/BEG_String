@@ -40,11 +40,17 @@ int main()
   test3.reserve(20);
   printf("\n Capacity of test 3 after reserve :\t %d\n", int(test3.capacity()));
 
-  //+operator test 
+  //+operator test (String)
 
   String test0(test3 + test4);
 
   test4.print_str_properties(0);
+  
+  //+operator test (char)
+  String testChar = "l'hibou niche ";
+  String resultChar = testChar + 'o' ;
+  
+  resultChar.print_str_properties(42);
 
   //=operator test for copy, +operator by string
   
