@@ -243,9 +243,20 @@ String& String::operator=(const char* c_string)
   str = new char[capacity_];
   str[size_] = '\0';
 
-  for(unsigned int i = 0; i < size_; ++i) // Don't copy the '\0' character
+  for(unsigned int i = 0; i < size_; ++i) 
   {
     str[i] = c_string[i];
   }
+  return *this;
+}
+
+//Operator= by char
+String& String::operator=(char c)
+{
+  str = new char[255];
+  str[0] = c;
+  str[1]='\0';
+  size_ = 1;
+  capacity_ = 255;
   return *this;
 }

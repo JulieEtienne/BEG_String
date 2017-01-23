@@ -36,8 +36,11 @@ class String {
 
     //OPERATORS
     String operator+(const String& left_s);
+    
     String& operator=(const String& left_s);
     String& operator=(const char* c_string);
+    String& operator=(char c);
+
 
 
   private :
