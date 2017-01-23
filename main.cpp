@@ -53,18 +53,27 @@ int main()
   resultChar.print_str_properties(42);
 
   //=operator test for copy, +operator by string
-  
   test = test3 + test0;
-  test.print_str_properties(1);
+  test.print_str_properties(1200);
 
   //=operator test for c_str
-
   test = "re-coucou";
   test.print_str_properties(1);
 
   //=operator test for char
   test = 'a';   //Note : also works if character is empty
   test.print_str_properties(1);
+
+  //resize test
+  test3.resize(300,'u');
+  test3.print_str_properties(3);
+
+  //clear test
+  test3.clear();
+  test3.print_str_properties(3);
+
+  test3.resize(300,'u');
+
 
   //+operator for char*
   char test_[10] = "Hello";
