@@ -72,6 +72,9 @@ int main()
   test3.clear();
   test3.print_str_properties(3);
 
+  test3.resize(300,'u');
+
+
   //+operator for char*
   char test_[10] = "Hello";
   String t = test3 + test_;
