@@ -301,10 +301,13 @@ String& String::operator=(const String& rhs)
   capacity_ = rhs.capacity_;
   size_ = rhs.capacity_;
 
+  //Reset the tabular str 
   delete [] str;
 
+  //Allow the new capacity
   str = new char[capacity_];
 
+  //Fill the new char tabular
   for(unsigned int i = 0; i < size_; ++i)
   {
     str[i] = rhs.str[i];
@@ -317,13 +320,15 @@ String& String::operator=(const String& rhs)
 //Operator= by c_str
 String& String::operator=(const char* c_string)
 {
+  //Put in "s" the size of c_string
   int s = 0;
   while(c_string[s] != '\0')
   {
     ++s;
   }
 
-  size_ = s; // Number of characters (without the '\0')
+  // Number of characters (without the '\0')
+  size_ = s; 
 
   if(size_ < 255)
   {
@@ -334,6 +339,7 @@ String& String::operator=(const char* c_string)
     capacity_ = size_ +1;
   }
 
+  //creation of the char tabular ended with '\0'
   str = new char[capacity_];
   str[size_] = '\0';
 
@@ -347,7 +353,10 @@ String& String::operator=(const char* c_string)
 //Operator= by char
 String& String::operator=(char c)
 {
+  //Creation of the new char tabular with the default capacity
   str = new char[255];
+  
+  //Added the char end the and '\0'
   str[0] = c;
   str[1]='\0';
   size_ = 1;
