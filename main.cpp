@@ -20,9 +20,6 @@ int main()
   //String of 251 char
   String test4("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Bigger >:)");
   
-  // printf("\n Capacity of test 4 :\t %d", int(test4.capacity()));
-  // printf("\n Size of test 4 :\t %d", int(test4.size()));
-  // printf("\n Content of test 4 :\t %s", test4.c_str());
   test4.print_str_properties(4);
 
   
@@ -49,11 +46,17 @@ int main()
 
   test4.print_str_properties(0);
 
-  //=operator test 
+  //=operator test for copy
   
   test = test3 + test0;
 
-  test4.print_str_properties(1);
+  test.print_str_properties(1);
+
+  //=operator test for c_str
+
+  test = "re-coucou";
+  test.print_str_properties(1);
+
 
   printf("\nEND\n");
 
