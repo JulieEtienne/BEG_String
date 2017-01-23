@@ -9,7 +9,7 @@ String::~String()
 }
 
 
-  
+
 
 
 //CONSTRUCTOR
@@ -25,7 +25,7 @@ String::String()
 String::String(const String &cp)
 {
   str = new char[cp.capacity_];
-  for (unsigned int i = 0; i < cp.size_; ++i) 
+  for (unsigned int i = 0; i < cp.size_; ++i)
   {
     str[i] = cp.str[i];
   }
@@ -125,7 +125,7 @@ void String::reserve(int addedSize)
 
   //Init of new tab
   char* temp;
-  
+
   temp = new char[a];
 
   //Fill the new tab of the new string
@@ -133,12 +133,13 @@ void String::reserve(int addedSize)
     {
       temp[i] = str[i];
     }
-  delete [] str; 
+  delete [] str;
   str = temp;
 
   //Update capacity
-  capacity_ += addedSize; 
+  capacity_ += addedSize;
 }
+
 
 void String::resize(size_t n, char c)
 {
@@ -150,7 +151,6 @@ void String::resize(size_t n, char c)
     if (!(tmp = (char *)malloc(sizeof(char) * n)))
         return ;
     for (unsigned int i = 0; i < n; i++) {
-        //if this->str exists => n > this->size_
         if (str[i]) {
             tmp[i] = str[i];
         } else {
@@ -180,19 +180,20 @@ void String::print_str_properties(int id)
 String String::operator+(const String& left_s)
 {
   String tmp_str(*this);
+  size_t sum = tmp_str.size_ + left_s.size_;
 
   //Update capacity if necessary
-  if(tmp_str.size_ + left_s.size_ >= tmp_str.capacity_)
+  if(sum >= tmp_str.capacity_)
   {
-    tmp_str.reserve(int((tmp_str.size_+left_s.size_)-tmp_str.capacity_));
+    tmp_str.reserve(int(sum - tmp_str.capacity_));
   }
-    
+
   //concatenate strings
-  for (unsigned int i = tmp_str.size_; i < (left_s.size_+tmp_str.size_); ++i)
+  for (unsigned int i = tmp_str.size_; i < sum; ++i)
   {
     tmp_str.str[i] = left_s.str[i-tmp_str.size_];
   }
-  
+
   //Update size
   tmp_str.size_  += left_s.size_;
 
@@ -201,6 +202,36 @@ String String::operator+(const String& left_s)
   return tmp_str;
 }
 
+//Operator+ by char*
+String String::operator+(const char* c_string) {
+  //new string tmp_str equals to a, if we do a + b
+  String tmp_str(*this);
+  //c_string size
+  size_t s = 0;
+  while(c_string[s] != '\0') {
+      ++s;
+  }
+  //new size, prepared for copy
+  size_t sum = tmp_str.size_ + s;
+
+  //check if capacity is big enough
+  if (sum >= tmp_str.capacity_) {
+      tmp_str.reserve(int(sum - tmp_str.capacity_));
+  }
+
+  //Copy of the char* = we add it to tmp_str
+  for (unsigned int i = tmp_str.size_ ; i < sum; ++i) {
+      tmp_str.str[i] = c_string[i - tmp_str.size_];
+  }
+
+  //Update size :
+  tmp_str.size_ = sum;
+  //Add the '\0'
+  tmp_str.str[tmp_str.size_] = '\0';
+
+   return tmp_str;
+
+}
 
 //Operator= by copy
 String& String::operator=(const String& left_s)
@@ -208,7 +239,7 @@ String& String::operator=(const String& left_s)
   capacity_ = left_s.capacity_;
   size_ = left_s.capacity_;
 
-  delete [] str;  
+  delete [] str;
 
   str = new char[capacity_];
 
@@ -243,7 +274,7 @@ String& String::operator=(const char* c_string)
   str = new char[capacity_];
   str[size_] = '\0';
 
-  for(unsigned int i = 0; i < size_; ++i) 
+  for(unsigned int i = 0; i < size_; ++i)
   {
     str[i] = c_string[i];
   }

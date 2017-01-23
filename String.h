@@ -26,7 +26,7 @@ class String {
     size_t size();
     size_t max_size();
     size_t length();
-    
+
     bool empty();
 
     char* c_str();
@@ -36,7 +36,8 @@ class String {
 
     //OPERATORS
     String operator+(const String& left_s);
-    
+    String operator+(const char* c_string);
+
     String& operator=(const String& left_s);
     String& operator=(const char* c_string);
     String& operator=(char c);
