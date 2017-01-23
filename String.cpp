@@ -15,11 +15,11 @@ String::~String()
 //CONSTRUCTOR
 String::String()
 {
-  str = new char[255];
+  str = new char[DEF_SIZE];
 
   str[0]='\0';
   size_ = 0;
-  capacity_ = 255;
+  capacity_ = DEF_SIZE;
 }
 
 String::String(const String &cp)
@@ -47,9 +47,9 @@ String::String(const char* c_string)
 
   size_ = s; // Number of characters (without the '\0')
 
-  if(size_ < 255)
+  if(size_ < DEF_SIZE)
   {
-    capacity_ = 255;
+    capacity_ = DEF_SIZE;
   }
   else
   {
@@ -171,9 +171,9 @@ void String::resize(size_t n, char c)
 void String::clear()
 {
   delete [] str;
-  str = new char[255];
+  str = new char[DEF_SIZE];
   size_ = 0;
-  capacity_ = 255;
+  capacity_ = DEF_SIZE;
   str[0] = '\0';
 }
 
@@ -301,9 +301,9 @@ String& String::operator=(const char* c_string)
 
   size_ = s; // Number of characters (without the '\0')
 
-  if(size_ < 255)
+  if(size_ < DEF_SIZE)
   {
-    capacity_ = 255;
+    capacity_ = DEF_SIZE;
   }
   else
   {
@@ -323,10 +323,10 @@ String& String::operator=(const char* c_string)
 //Operator= by char
 String& String::operator=(char c)
 {
-  str = new char[255];
+  str = new char[DEF_SIZE];
   str[0] = c;
   str[1]='\0';
   size_ = 1;
-  capacity_ = 255;
+  capacity_ = DEF_SIZE;
   return *this;
 }

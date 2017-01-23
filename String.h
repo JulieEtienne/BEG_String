@@ -50,7 +50,8 @@ class String {
   private :
 
     // defines maximum size a string can reach
-    const size_t MAX_SIZE = 4294967291;
+    static const size_t MAX_SIZE = 4294967291;
+    static const size_t DEF_SIZE = 255;
 
     char* str;        // character tab
 
