@@ -39,6 +39,7 @@ class String {
 
     //OPERATORS
     String operator+(char right_s);
+    String operator+(const char* c_string);
 
     String& operator=(const String& right_s);
     String& operator=(const char* c_string);

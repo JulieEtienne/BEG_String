@@ -19,10 +19,10 @@ int main()
 
   //String of >255 char
   String test4("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Bigger >:)");
-  
+
   test4.print_str_properties(4);
 
-  
+
   //C-string method test
   printf("\n Test c-string :\t %s\n", test3.c_str());
 
@@ -40,7 +40,7 @@ int main()
   test3.reserve(20);
   printf("\n Capacity of test 3 after reserve :\t %d\n", int(test3.capacity()));
 
-  //+operator test (String)
+  //+operator test
 
   String test0(test3 + test4);
 
@@ -71,6 +71,13 @@ int main()
   //clear test
   test3.clear();
   test3.print_str_properties(3);
+
+  //+operator for char*
+  char test_[10] = "Hello";
+  String t = test3 + test_;
+  t.print_str_properties(20);
+  t = t + " cou cou";
+  t.print_str_properties(2);
 
   printf("\nEND\n");
 

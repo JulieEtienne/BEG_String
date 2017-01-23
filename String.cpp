@@ -9,7 +9,7 @@ String::~String()
 }
 
 
-  
+
 
 
 //CONSTRUCTOR
@@ -25,7 +25,7 @@ String::String()
 String::String(const String &cp)
 {
   str = new char[cp.capacity_];
-  for (unsigned int i = 0; i < cp.size_; ++i) 
+  for (unsigned int i = 0; i < cp.size_; ++i)
   {
     str[i] = cp.str[i];
   }
@@ -125,7 +125,7 @@ void String::reserve(int addedSize)
 
   //Init of new tab
   char* temp;
-  
+
   temp = new char[a];
 
   //Fill the new tab of the new string
@@ -133,12 +133,13 @@ void String::reserve(int addedSize)
     {
       temp[i] = str[i];
     }
-  delete [] str; 
+  delete [] str;
   str = temp;
 
   //Update capacity
-  capacity_ += addedSize; 
+  capacity_ += addedSize;
 }
+
 
 void String::resize(size_t n, char c)
 {
@@ -205,13 +206,13 @@ String operator+(const String& lhs, const String& rhs)
   {
     sum_s.reserve(int(sum-lhs.capacity_));
   }
-    
+
   //concatenate strings
   for (unsigned int i = sum_s.size_; i < sum ; ++i)
   {
     sum_s.str[i] = rhs.str[i-lhs.size_];
   }
-  
+
   //Update size
   sum_s.size_ += rhs.size_;
   sum_s.str[sum_s.size_] = '\0';
@@ -239,6 +240,36 @@ String String::operator+(char rhs)
   return tmp_str;
 }
 
+//Operator+ by char*
+String String::operator+(const char* c_string) {
+  //new string tmp_str equals to a, if we do a + b
+  String tmp_str(*this);
+  //c_string size
+  size_t s = 0;
+  while(c_string[s] != '\0') {
+      ++s;
+  }
+  //new size, prepared for copy
+  size_t sum = tmp_str.size_ + s;
+
+  //check if capacity is big enough
+  if (sum >= tmp_str.capacity_) {
+      tmp_str.reserve(int(sum - tmp_str.capacity_));
+  }
+
+  //Copy of the char* = we add it to tmp_str
+  for (unsigned int i = tmp_str.size_ ; i < sum; ++i) {
+      tmp_str.str[i] = c_string[i - tmp_str.size_];
+  }
+
+  //Update size :
+  tmp_str.size_ = sum;
+  //Add the '\0'
+  tmp_str.str[tmp_str.size_] = '\0';
+
+   return tmp_str;
+
+}
 
 //Operator= by copy
 String& String::operator=(const String& rhs)
@@ -246,7 +277,7 @@ String& String::operator=(const String& rhs)
   capacity_ = rhs.capacity_;
   size_ = rhs.capacity_;
 
-  delete [] str;  
+  delete [] str;
 
   str = new char[capacity_];
 
@@ -282,7 +313,7 @@ String& String::operator=(const char* c_string)
   str = new char[capacity_];
   str[size_] = '\0';
 
-  for(unsigned int i = 0; i < size_; ++i) 
+  for(unsigned int i = 0; i < size_; ++i)
   {
     str[i] = c_string[i];
   }
