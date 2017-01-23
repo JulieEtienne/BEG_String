@@ -6,6 +6,8 @@
 
 class String {
 
+  friend String operator+(const String& lhs, const String& rhs);
+
   public :
 
     // CONSTRUCTORS
@@ -36,7 +38,6 @@ class String {
     void reserve(int addedSize);
 
     //OPERATORS
-    String operator+(const String& right_s);
     String operator+(char right_s);
 
     String& operator=(const String& right_s);
@@ -56,5 +57,9 @@ class String {
     size_t size_;     // length of string
 
 };
+
+    String operator+(const String& lhs, const String& rhs);
+
+
 
 #endif //STRING_H

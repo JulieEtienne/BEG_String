@@ -177,7 +177,7 @@ void String::clear()
 }
 
 
-void String::print_str_properties(int id)
+void String::print_str_properties(int id) 
 {
   printf("\nString number %d properties\n", id);
   printf("\n Is empty:\t %s", this->empty()? "True":"False");
@@ -192,32 +192,34 @@ void String::print_str_properties(int id)
 //OPERATORS
 
 //Operator+ by copy
-String String::operator+(const String& right_s)
+String operator+(const String& lhs, const String& rhs)
 {
-  String tmp_str(*this);
-
+  size_t sum = lhs.size_ + rhs.size_;
   //Update capacity if necessary
-  if(tmp_str.size_ + right_s.size_ >= tmp_str.capacity_)
+  String sum_s(lhs);
+
+
+  //rhs.print_str_properties(999999);
+
+  if(sum >= sum_s.capacity_)
   {
-    tmp_str.reserve(int((tmp_str.size_+right_s.size_)-tmp_str.capacity_));
+    sum_s.reserve(int(sum-lhs.capacity_));
   }
     
   //concatenate strings
-  for (unsigned int i = tmp_str.size_; i < (right_s.size_+tmp_str.size_); ++i)
+  for (unsigned int i = sum_s.size_; i < sum ; ++i)
   {
-    tmp_str.str[i] = right_s.str[i-tmp_str.size_];
+    sum_s.str[i] = rhs.str[i-lhs.size_];
   }
   
   //Update size
-  printf("\nMOUAHA : %d\n", int(right_s.size_));
-  tmp_str.size_  += right_s.size_;
+  sum_s.size_ += rhs.size_;
+  sum_s.str[sum_s.size_] = '\0';
 
-  tmp_str.str[tmp_str.size_] = '\0';
-
-  return tmp_str;
+  return sum_s;
 }
 
-String String::operator+(char right_s)
+String String::operator+(char rhs)
 {
   String tmp_str(*this);
   
@@ -228,7 +230,7 @@ String String::operator+(char right_s)
   tmp_str.reserve(newSize);
    
   //Concatenate string and char
-  tmp_str.str[newSize -1] = right_s;
+  tmp_str.str[newSize -1] = rhs;
   
   //Update size
   tmp_str.size_ += 1;
@@ -239,10 +241,10 @@ String String::operator+(char right_s)
 
 
 //Operator= by copy
-String& String::operator=(const String& right_s)
+String& String::operator=(const String& rhs)
 {
-  capacity_ = right_s.capacity_;
-  size_ = right_s.capacity_;
+  capacity_ = rhs.capacity_;
+  size_ = rhs.capacity_;
 
   delete [] str;  
 
@@ -250,7 +252,7 @@ String& String::operator=(const String& right_s)
 
   for(unsigned int i = 0; i < size_; ++i)
   {
-    str[i] = right_s.str[i];
+    str[i] = rhs.str[i];
   }
 
   return *this;
