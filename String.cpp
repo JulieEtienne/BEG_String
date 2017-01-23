@@ -57,12 +57,12 @@ String::String(const char* c_string)
   }
 
   str = new char[capacity_];
+  str[size_] = '\0';
 
   for(unsigned int i = 0; i < size_; ++i) // Don't copy the '\0' character
   {
     str[i] = c_string[i];
   }
-
 }
 
 
@@ -201,6 +201,8 @@ String String::operator+(const String& left_s)
   return tmp_str;
 }
 
+
+//Operator= by copy
 String& String::operator=(const String& left_s)
 {
   capacity_ = left_s.capacity_;
@@ -218,3 +220,32 @@ String& String::operator=(const String& left_s)
   return *this;
 }
 
+//Operator= by c_str
+String& String::operator=(const char* c_string)
+{
+  int s = 0;
+  while(c_string[s] != '\0')
+  {
+    ++s;
+  }
+
+  size_ = s; // Number of characters (without the '\0')
+
+  if(size_ < 255)
+  {
+    capacity_ = 255;
+  }
+  else
+  {
+    capacity_ = size_ +1;
+  }
+
+  str = new char[capacity_];
+  str[size_] = '\0';
+
+  for(unsigned int i = 0; i < size_; ++i) // Don't copy the '\0' character
+  {
+    str[i] = c_string[i];
+  }
+  return *this;
+}
