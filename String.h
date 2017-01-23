@@ -12,7 +12,7 @@ class String {
 
     String();
     String(const String &cp);
-    String(const char* c_string); // Constructor using a c-string
+    String(const char* c_string);
 
     // DESTRUCTOR
 
@@ -27,7 +27,7 @@ class String {
     size_t max_size();
     size_t length();
     void clear();
-    
+
     bool empty();
 
     char* c_str();
