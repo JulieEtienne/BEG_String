@@ -16,28 +16,27 @@ class String {
 
     String();
     String(const String &cp);
-    String(const char* c_string); // Constructor using a c-string
+    String(const char* c_string);
 
     // DESTRUCTOR
 
     ~String();
 
     // MEMBER FUCTIONS
-    void print_str_properties(int id);
-
 
     size_t capacity();
     size_t size();
     size_t max_size();
     size_t length();
-    void clear();
-    
-    bool empty();
-
     char* c_str();
 
+    bool empty();
+
+    void clear();
     void resize(size_t n, char c = '\0');
     void reserve(int addedSize);
+
+    void print_str_properties(int id);
 
     //OPERATORS
 
@@ -45,18 +44,19 @@ class String {
     String& operator=(const char* c_string);
     String& operator=(char c);
 
-
-
   private :
 
-    // defines maximum size a string can reach
+    // Defines maximum size a String can reach
     static const size_t MAX_SIZE = 4294967291;
     static const size_t DEF_SIZE = 255;
 
-    char* str;        // character tab
+    // Character tab
+    char* str;
 
-    size_t capacity_; // size of tab
-    size_t size_;     // length of string
+    // Size of tab
+    size_t capacity_;
+    // Length of String
+    size_t size_;
 
 };
 
