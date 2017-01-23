@@ -57,6 +57,10 @@ int main()
   test = "re-coucou";
   test.print_str_properties(1);
 
+  //=operator test for char
+  test = "a";   //Note : also works if character is empty
+  test.print_str_properties(1);
+
 
   printf("\nEND\n");
 
