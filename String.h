@@ -26,7 +26,8 @@ class String {
     size_t size();
     size_t max_size();
     size_t length();
-
+    void clear();
+    
     bool empty();
 
     char* c_str();
@@ -35,10 +36,11 @@ class String {
     void reserve(int addedSize);
 
     //OPERATORS
-    String operator+(const String& left_s);
+    String operator+(const String& right_s);
+    String operator+(const char right_s);
     String operator+(const char* c_string);
 
-    String& operator=(const String& left_s);
+    String& operator=(const String& right_s);
     String& operator=(const char* c_string);
     String& operator=(char c);
 

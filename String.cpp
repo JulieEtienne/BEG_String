@@ -144,22 +144,37 @@ void String::reserve(int addedSize)
 void String::resize(size_t n, char c)
 {
     // resize an initial string to a new size n
-    char* tmp = NULL;
+    char* tmp = new char[n];
 
-    //Allocate memory to tmp var
-    //If malloc returns, means it didn't work
-    if (!(tmp = (char *)malloc(sizeof(char) * n)))
-        return ;
+    if (n >= capacity_)
+    {
+      this->reserve(int(n-capacity_)+1);
+    }
+
     for (unsigned int i = 0; i < n; i++) {
-        if (str[i]) {
-            tmp[i] = str[i];
-        } else {
-            tmp[i] = c;
+        if (i < size_) 
+        {
+          tmp[i] = str[i];
+        } 
+        else 
+        {
+          tmp[i] = c;
         }
     }
-    //Same ptrs
+    size_ = n;
+    tmp[size_] = '\0';
+
     delete [] str;
     str = tmp;
+}
+
+void String::clear()
+{
+  delete [] str;
+  str = new char[255];
+  size_ = 0;
+  capacity_ = 255;
+  str[0] = '\0';
 }
 
 
@@ -177,7 +192,8 @@ void String::print_str_properties(int id)
 
 //OPERATORS
 
-String String::operator+(const String& left_s)
+//Operator+ by copy
+String String::operator+(const String& right_s)
 {
   String tmp_str(*this);
   size_t sum = tmp_str.size_ + left_s.size_;
@@ -191,14 +207,35 @@ String String::operator+(const String& left_s)
   //concatenate strings
   for (unsigned int i = tmp_str.size_; i < sum; ++i)
   {
-    tmp_str.str[i] = left_s.str[i-tmp_str.size_];
+    tmp_str.str[i] = right_s.str[i-tmp_str.size_];
   }
 
   //Update size
-  tmp_str.size_  += left_s.size_;
+  printf("\nMOUAHA : %d\n", int(right_s.size_));
+  tmp_str.size_  += right_s.size_;
 
   tmp_str.str[tmp_str.size_] = '\0';
 
+  return tmp_str;
+}
+
+String String::operator+(const char right_s)
+{
+  String tmp_str(*this);
+  
+  //define the new size
+  int newSize = int(tmp_str.size_)+1;
+  
+  //Add the new capacity
+  tmp_str.reserve(newSize);
+   
+  //Concatenate string and char
+  tmp_str.str[newSize -1] = right_s;
+  
+  //Update size
+  tmp_str.size_ += 1;
+  tmp_str.str[tmp_str.size_] = '\0';
+  
   return tmp_str;
 }
 
@@ -234,10 +271,10 @@ String String::operator+(const char* c_string) {
 }
 
 //Operator= by copy
-String& String::operator=(const String& left_s)
+String& String::operator=(const String& right_s)
 {
-  capacity_ = left_s.capacity_;
-  size_ = left_s.capacity_;
+  capacity_ = right_s.capacity_;
+  size_ = right_s.capacity_;
 
   delete [] str;
 
@@ -245,11 +282,12 @@ String& String::operator=(const String& left_s)
 
   for(unsigned int i = 0; i < size_; ++i)
   {
-    str[i] = left_s.str[i];
+    str[i] = right_s.str[i];
   }
 
   return *this;
 }
+
 
 //Operator= by c_str
 String& String::operator=(const char* c_string)

@@ -17,7 +17,7 @@ int main()
   //C-string constructor test
   String test3("coucou");
 
-  //String of 251 char
+  //String of >255 char
   String test4("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Bigger >:)");
 
   test4.print_str_properties(4);
@@ -37,7 +37,7 @@ int main()
   printf("\n Size of test 3 :\t %d\n", (int)test3.size());
 
   //reserve method test
-  test3.reserve(100);
+  test3.reserve(20);
   printf("\n Capacity of test 3 after reserve :\t %d\n", int(test3.capacity()));
 
   //+operator test
@@ -45,11 +45,16 @@ int main()
   String test0(test3 + test4);
 
   test4.print_str_properties(0);
+  
+  //+operator test (char)
+  String testChar = "l'hibou niche ";
+  String resultChar = testChar + 'o' ;
+  
+  resultChar.print_str_properties(42);
 
-  //=operator test for copy
-
+  //=operator test for copy, +operator by string
+  
   test = test3 + test0;
-
   test.print_str_properties(1);
 
   //=operator test for c_str
@@ -58,7 +63,7 @@ int main()
   test.print_str_properties(1);
 
   //=operator test for char
-  test = "a";   //Note : also works if character is empty
+  test = 'a';   //Note : also works if character is empty
   test.print_str_properties(1);
 
   //+operator for char*
