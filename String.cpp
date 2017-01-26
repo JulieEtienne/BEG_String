@@ -71,6 +71,7 @@ String::String(const char* c_string)
 }
 
 
+
 // DESTRUCTOR
 
 String::~String()
@@ -79,6 +80,7 @@ String::~String()
 
   delete [] str;
 }
+
 
 
 // MEMBER FUNCTIONS
@@ -110,9 +112,9 @@ size_t String::max_size()
 
 size_t String::length()
 {
-    //Returns the size of the String
+  //Returns the size of the String
 
-    return size_;
+  return size_;
 }
 
 
@@ -134,7 +136,7 @@ bool String::empty()
 
 void String::reserve(int addedSize)
 {
-  //Allows more size for the String
+  //Add capacity for the String
 
   int a = capacity_ + addedSize;
 
@@ -150,7 +152,7 @@ void String::reserve(int addedSize)
   delete [] str;
   str = temp;
 
-  //Updates capacity
+  //Updates capacity attribute
   capacity_ += addedSize;
 }
 
@@ -158,14 +160,14 @@ void String::reserve(int addedSize)
 void String::resize(size_t n, char c)
 {
     /**Resizes an initial String to a new size n :
-       If n > size : adds blank boxes or fills them with c
+       If n > size : adds empty chars or fills them with c
        If n < size : truncates the String **/
 
     //Creates a temporary table
     char* tmp = new char[n];
 
     /**If size if greater than capacity,
-       we need to allow more boxes **/
+       we need to allow more memory **/
     if (n >= capacity_)
     {
       this->reserve(int(n-capacity_)+1);
@@ -193,7 +195,7 @@ void String::resize(size_t n, char c)
 
 void String::clear()
 {
-  //Empties the String
+  //Empties the String and resets capacity to DEF_SIZE
   delete [] str;
   str = new char[DEF_SIZE];
   size_ = 0;
@@ -241,6 +243,7 @@ String operator+(const String& lhs, const String& rhs)
   return sum_s;
 }
 
+//Operator+ by char
 String operator+(const String& lhs, char rhs)
 {
   String sum_s(lhs);
@@ -324,7 +327,7 @@ String& String::operator=(const char* c_string)
     ++s;
   }
 
-  // Number of characters (without the '\0')
+  //Number of characters (without the '\0')
   size_ = s; 
 
   if(size_ < DEF_SIZE)
@@ -336,7 +339,8 @@ String& String::operator=(const char* c_string)
     capacity_ = size_ +1;
   }
 
-  //creation of the char tabular ended with '\0'
+  //Creation of the char tabular ended with '\0'
+  delete [] str;
   str = new char[capacity_];
   str[size_] = '\0';
 
@@ -351,6 +355,7 @@ String& String::operator=(const char* c_string)
 String& String::operator=(char c)
 {
   //Creation of the new char tabular with the default capacity
+  delete [] str;
   str = new char[DEF_SIZE];
   
   //Added the char end the and '\0'
