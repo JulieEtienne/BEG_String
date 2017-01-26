@@ -223,9 +223,6 @@ String operator+(const String& lhs, const String& rhs)
   //Update capacity if necessary
   String sum_s(lhs);
 
-
-  //rhs.print_str_properties(999999);
-
   if(sum >= sum_s.capacity_)
   {
     sum_s.reserve(int(sum-lhs.capacity_));
