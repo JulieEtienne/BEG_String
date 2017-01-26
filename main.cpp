@@ -19,7 +19,7 @@ int main()
   //C-string constructor test
   String test3("coucou");
 
-  //String of >DEF_SIZE char
+  //String >DEF_SIZE characters
   String test4("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Bigger >:)");
 
   //Print str properties test
