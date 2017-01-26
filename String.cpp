@@ -301,7 +301,7 @@ String& String::operator=(const String& rhs)
   capacity_ = rhs.capacity_;
   size_ = rhs.capacity_;
 
-  //Reset the tabular str 
+  //Reset the tabular str
   delete [] str;
 
   //Allow the new capacity
@@ -328,7 +328,7 @@ String& String::operator=(const char* c_string)
   }
 
   // Number of characters (without the '\0')
-  size_ = s; 
+  size_ = s;
 
   if(size_ < 255)
   {
@@ -355,7 +355,7 @@ String& String::operator=(char c)
 {
   //Creation of the new char tabular with the default capacity
   str = new char[255];
-  
+
   //Added the char end the and '\0'
   str[0] = c;
   str[1]='\0';
