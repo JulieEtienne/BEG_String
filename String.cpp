@@ -7,11 +7,11 @@ String::String()
 {
   //Default constructor
 
-  str = new char[255];
+  str = new char[DEF_SIZE];
 
   str[0]='\0';
   size_ = 0;
-  capacity_ = 255;
+  capacity_ = DEF_SIZE;
 }
 
 
@@ -57,7 +57,7 @@ String::String(const char* c_string)
   }
   else
   {
-    capacity_ = size_ > 255 ? size_+1 : 255;
+    capacity_ = size_ > DEF_SIZE ? size_+1 : DEF_SIZE;
   }
 
   str = new char[capacity_];
@@ -71,6 +71,7 @@ String::String(const char* c_string)
 }
 
 
+
 // DESTRUCTOR
 
 String::~String()
@@ -79,6 +80,7 @@ String::~String()
 
   delete [] str;
 }
+
 
 
 // MEMBER FUNCTIONS
@@ -110,9 +112,9 @@ size_t String::max_size()
 
 size_t String::length()
 {
-    //Returns the size of the String
+  //Returns the size of the String
 
-    return size_;
+  return size_;
 }
 
 
@@ -134,7 +136,7 @@ bool String::empty()
 
 void String::reserve(int addedSize)
 {
-  //Allows more size for the String
+  //Add capacity for the String
 
   int a = capacity_ + addedSize;
 
@@ -150,7 +152,7 @@ void String::reserve(int addedSize)
   delete [] str;
   str = temp;
 
-  //Updates capacity
+  //Updates capacity attribute
   capacity_ += addedSize;
 }
 
@@ -158,21 +160,21 @@ void String::reserve(int addedSize)
 void String::resize(size_t n, char c)
 {
     /**Resizes an initial String to a new size n :
-       If n > size : adds blank boxes or fills them with c
+       If n > size : adds empty chars or fills them with c
        If n < size : truncates the String **/
 
     //Creates a temporary table
     char* tmp = new char[n];
 
     /**If size if greater than capacity,
-       we need to allow more boxes **/
+       we need to allow more memory **/
     if (n >= capacity_)
     {
       this->reserve(int(n-capacity_)+1);
     }
 
-    //Copies the value of the string in tmp
-    //Replaces blank space by char c if needed and asked
+    /**Copies the value of the string in tmp
+       Replaces blank space by char c if needed and asked **/
     for (unsigned int i = 0; i < n; i++) {
         if (i < size_)
         {
@@ -193,11 +195,12 @@ void String::resize(size_t n, char c)
 
 void String::clear()
 {
-  //Empties the String
+  //Empties the String and resets capacity to DEF_SIZE
+
   delete [] str;
-  str = new char[255];
+  str = new char[DEF_SIZE];
   size_ = 0;
-  capacity_ = 255;
+  capacity_ = DEF_SIZE;
   str[0] = '\0';
 }
 
@@ -205,6 +208,7 @@ void String::clear()
 void String::print_str_properties(int id)
 {
   //Easier way to view results while testing
+
   printf("\nString number %d properties\n", id);
   printf("\n Is empty:\t %s", this->empty()? "True":"False");
 
@@ -216,22 +220,20 @@ void String::print_str_properties(int id)
 
 //OPERATORS
 
-//Operator+ by copy
 String operator+(const String& lhs, const String& rhs)
 {
+  //Operator+ by copy
+
   size_t sum = lhs.size_ + rhs.size_;
   //Update capacity if necessary
   String sum_s(lhs);
-
-
-  //rhs.print_str_properties(999999);
 
   if(sum >= sum_s.capacity_)
   {
     sum_s.reserve(int(sum-lhs.capacity_));
   }
 
-  //concatenate strings
+  //Concatenate strings
   for (unsigned int i = sum_s.size_; i < sum ; ++i)
   {
     sum_s.str[i] = rhs.str[i-lhs.size_];
@@ -244,15 +246,17 @@ String operator+(const String& lhs, const String& rhs)
   return sum_s;
 }
 
+
 String operator+(const String& lhs, char rhs)
 {
+  //Operator+ by char
+
   String sum_s(lhs);
 
   if(sum_s.size_+1 >= sum_s.capacity_)
   {
     sum_s.reserve(int(sum_s.size_-sum_s.capacity_) +1);
   }
-
   sum_s.str[sum_s.size_] = rhs;
 
   //Update size
@@ -262,9 +266,11 @@ String operator+(const String& lhs, char rhs)
   return sum_s;
 }
 
-//Operator+ by char*
+
 String operator+(const String& lhs, const char* rhs)
 {
+  //Operator+ by char*
+
   String sum_s(lhs);
 
   //rhs size
@@ -272,10 +278,10 @@ String operator+(const String& lhs, const char* rhs)
   while(rhs[s] != '\0') {
       ++s;
   }
-  //new size, prepared for copy
+  //New size, prepared for copy
   size_t sum = sum_s.size_ + s;
 
-  //check if capacity is big enough
+  //Check if capacity is big enough
   if (sum >= sum_s.capacity_) {
       sum_s.reserve(int(sum - sum_s.capacity_) +1);
   }
@@ -292,12 +298,13 @@ String operator+(const String& lhs, const char* rhs)
   sum_s.str[sum_s.size_] = '\0';
 
    return sum_s;
-
 }
 
-//Operator= by copy
+
 String& String::operator=(const String& rhs)
 {
+  //Operator= by copy
+
   capacity_ = rhs.capacity_;
   size_ = rhs.capacity_;
 
@@ -317,9 +324,10 @@ String& String::operator=(const String& rhs)
 }
 
 
-//Operator= by c_str
 String& String::operator=(const char* c_string)
 {
+  //Operator= by c_str
+
   //Put in "s" the size of c_string
   int s = 0;
   while(c_string[s] != '\0')
@@ -327,19 +335,20 @@ String& String::operator=(const char* c_string)
     ++s;
   }
 
-  // Number of characters (without the '\0')
+  //Number of characters (without the '\0')
   size_ = s;
 
-  if(size_ < 255)
+  if(size_ < DEF_SIZE)
   {
-    capacity_ = 255;
+    capacity_ = DEF_SIZE;
   }
   else
   {
     capacity_ = size_ +1;
   }
 
-  //creation of the char tabular ended with '\0'
+  //Creation of the char tabular ended with '\0'
+  delete [] str;
   str = new char[capacity_];
   str[size_] = '\0';
 
@@ -350,16 +359,19 @@ String& String::operator=(const char* c_string)
   return *this;
 }
 
-//Operator= by char
+
 String& String::operator=(char c)
 {
+  //Operator= by char
+
   //Creation of the new char tabular with the default capacity
-  str = new char[255];
+  delete [] str;
+  str = new char[DEF_SIZE];
 
   //Added the char end the and '\0'
   str[0] = c;
   str[1]='\0';
   size_ = 1;
-  capacity_ = 255;
+  capacity_ = DEF_SIZE;
   return *this;
 }

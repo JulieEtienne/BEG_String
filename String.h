@@ -6,6 +6,8 @@
 
 class String {
 
+  /**Friend means these functions have access to this class (eg. private
+     attributes) even if not member functions of it : special authorization **/
   friend String operator+(const String& lhs, const String& rhs);
   friend String operator+(const String& lhs, char rhs);
   friend String operator+(const String& lhs, const char* rhs);
@@ -46,8 +48,11 @@ class String {
 
   private :
 
+    //Class attributes
     // Defines maximum size a String can reach
-    const size_t MAX_SIZE = 4294967291;
+    static const size_t MAX_SIZE = 4294967291;
+    //Defines the default capacity we will allow to a String
+    static const size_t DEF_SIZE = 255;
 
     // Character tab
     char* str;
@@ -62,7 +67,5 @@ class String {
     String operator+(const String& lhs, const String& rhs);
     String operator+(const String& lhs, char rhs);
     String operator+(const String& lhs, const char* rhs);
-
-
 
 #endif //STRING_H
