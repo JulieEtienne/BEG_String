@@ -79,10 +79,11 @@ int main()
   //Operator+ for char*
   test3.resize(300,'u');
   char test_c[10] = "Hello";
+  printf("\n HERE %s\n", test_c);
   String testz = test3 + test_c;
 
   testz.print_str_properties(20);
-  testz = testz + " cou cou";
+  testz = testz + " coucou";
   testz.print_str_properties(2);
 
 
