@@ -255,7 +255,7 @@ String operator+(const String& lhs, char rhs)
 
   if(sum_s.size_+1 >= sum_s.capacity_)
   {
-    sum_s.reserve(int(sum_s.size_-sum_s.capacity_) +1);
+    sum_s.reserve(1);
   }
   sum_s.str[sum_s.size_] = rhs;
 
@@ -263,7 +263,6 @@ String operator+(const String& lhs, char rhs)
   sum_s.size_ += 1;
   sum_s.str[sum_s.size_] = '\0';
 
-  printf("\n size in constr + char : %d\n", int(sum_s.size_));
   return sum_s;
 }
 
@@ -298,7 +297,7 @@ String operator+(const String& lhs, const char* rhs)
   //Add the '\0'
   sum_s.str[sum_s.size_] = '\0';
 
-   return sum_s;
+  return sum_s;
 }
 
 
@@ -320,6 +319,9 @@ String& String::operator=(const String& rhs)
   {
     str[i] = rhs.str[i];
   }
+
+  //Don'f forget to add the '\0'
+  str[size_]= '\0';
 
   return *this;
 }
