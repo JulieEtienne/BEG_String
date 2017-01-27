@@ -263,6 +263,7 @@ String operator+(const String& lhs, char rhs)
   sum_s.size_ += 1;
   sum_s.str[sum_s.size_] = '\0';
 
+  printf("\n size in constr + char : %d\n", int(sum_s.size_));
   return sum_s;
 }
 
@@ -306,7 +307,7 @@ String& String::operator=(const String& rhs)
   //Operator= by copy
 
   capacity_ = rhs.capacity_;
-  size_ = rhs.capacity_;
+  size_ = rhs.size_;
 
   //Reset the tabular str
   delete [] str;

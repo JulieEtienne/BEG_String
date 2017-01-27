@@ -35,7 +35,7 @@ class String {
     bool empty();
 
     void clear();
-    void resize(size_t n, char c = '\0');
+    void resize(size_t n, char c = ' ');
     void reserve(int addedSize);
 
     void print_str_properties(int id);

@@ -56,7 +56,11 @@ int main()
   test3.print_str_properties(3);
 
   //Resize test
-  test3.resize(99,'u');
+  test3.resize(9, 'u');
+  test3.print_str_properties(3);
+
+  test3.resize(18); 
+  test3 = test3 + 'a';
   test3.print_str_properties(3);
 
 
@@ -65,7 +69,7 @@ int main()
 
   //Operator+ test String
   String test0(test3 + test4);
-  test4.print_str_properties(0);
+  test0.print_str_properties(0);
   
   //Operator+ test char
   String testx = "l'hibou niche ";
