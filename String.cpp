@@ -321,6 +321,8 @@ String& String::operator=(const String& rhs)
     str[i] = rhs.str[i];
   }
 
+  str[size_] = '\0';
+
   return *this;
 }
 
